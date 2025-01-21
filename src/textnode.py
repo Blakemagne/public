@@ -1,5 +1,4 @@
 from enum import Enum
-from main import main
 
 class TextType(Enum):
     NORMAL = "normal"
@@ -22,6 +21,3 @@ class TextNode():
     def __repr__(self):
         return f"TextNode({self.text}, {self.text_type}, {self.url})"
     
-    
-    
-main()
