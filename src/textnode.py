@@ -17,7 +17,7 @@ class TextNode():
     def __eq__(self, other):
         return self.text == other.text and self.text_type == other.text_type and self.url == other.url
 
-# returns a string representation of the TextNode object.
+# returns a string representation of the TextNode object. Note: value is used to get the string value of the TextType enum
     def __repr__(self):
-        return f"TextNode({self.text}, {self.text_type}, {self.url})"
+        return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
     
