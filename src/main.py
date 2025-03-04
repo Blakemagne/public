@@ -1,44 +1,20 @@
-from textnode import TextNode, TextType
-from htmlnode import ParentNode, LeafNode, HTMLNode
+import os
+import shutil
+
+from copystatic import copy_files_recursive
+
+
+dir_path_static = "./static"
+dir_path_public = "./public"
 
 
 def main():
-    # Test TextNode
-    text_node = TextNode("This is text", TextType.BOLD, "https://www.boot.dev")
-    
-    # Test HTMLNode props
-    html_node = HTMLNode(
-        tag="div",
-        value="Hello World",
-        props={"class": "container"}
-    )
-    
-    # Test LeafNode
-    leaf_node = LeafNode("a", "Click me!", {"href": "https://www.google.com"})
-    
-    # Test ParentNode with nested structure
-    parent_node = ParentNode(
-        "p",
-        [
-            LeafNode("b", "Bold text"),
-            LeafNode(None, "Normal text"),
-            ParentNode(
-                "div",
-                [
-                    LeafNode("i", "italic text"),
-                    LeafNode(None, "More text")
-                ],
-                {"class": "nested"}
-            ),
-            LeafNode(None, "Final text"),
-        ]
-    )
+    print("Deleting public directory...")
+    if os.path.exists(dir_path_public):
+        shutil.rmtree(dir_path_public)
 
-    # Print results
-    print("TextNode:", text_node)
-    print("HTMLNode props:", html_node.props_to_html())
-    print("LeafNode HTML:", leaf_node.to_html())
-    print("ParentNode HTML:", parent_node.to_html())
+    print("Copying static files to public directory...")
+    copy_files_recursive(dir_path_static, dir_path_public)
 
-if __name__ == "__main__":
-    main()
+
+main()
